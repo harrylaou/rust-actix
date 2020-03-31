@@ -1,8 +1,10 @@
 [package]
-name = "rust-buildpack-example-actix"
+name = "covid-backend"
 version = "0.1.0"
-authors = ["Eric Kidd <git@randomhacks.net>"]
+authors = ["Harry Laoulakos <harry@talos.software>"]
 edition = "2018"
 
 [dependencies]
-actix-web = "0.7"
+actix-web = "2"
+actix-rt = "1"
+listenfd = "0.3"
