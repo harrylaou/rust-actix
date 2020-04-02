@@ -2,3 +2,4 @@
 **/*.rs.bk
 .idea/
 covid-newsletter.iml
+/dump.rdb

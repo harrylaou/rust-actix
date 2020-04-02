@@ -1,18 +1,11 @@
-//! [actix]: https://actix.rs/docs/
-
-use std::env;
-
-use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpServer};
 use listenfd::ListenFd;
-
-// #[get("/")]
-// #[get("/hello")]
-async fn greet(req: HttpRequest) -> impl Responder {
-    let to = req.match_info().get("name").unwrap_or("World");
-
-    HttpResponse::Ok().body(format!("Hello {}!", to))
-}
-
+use std::env;
+mod handlers;
+mod request_models;
+mod types;
+mod web_client;
+use handlers::*;
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
     // Get the port number to listen on.
@@ -28,6 +21,7 @@ async fn main() -> std::io::Result<()> {
             // .service(greet) //used with // #[get("/")]
             .route("/", web::get().to(greet))
             .route("/hello/{name}", web::get().to(greet))
+            .route("/timeseries", web::get().to(time_series))
     });
 
     server = if let Some(l) = listen_fd.take_tcp_listener(0).unwrap() {
