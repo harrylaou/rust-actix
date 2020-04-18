@@ -1,7 +1,10 @@
-# Covid-newsletter
+# Rust Actix Toy Project
+
+Just trying to learn actix and rust.
 
 - https://github.com/emk/heroku-buildpack-rust
 - Cloned from https://github.com/emk/rust-buildpack-example-actix
+
 
 
 
