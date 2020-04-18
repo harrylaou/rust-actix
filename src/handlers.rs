@@ -10,6 +10,15 @@ pub async fn greet(req: HttpRequest) -> impl Responder {
 
 pub fn time_series_handler(time_series_state: web::Data<RwLock<TimeSeries>>) -> HttpResponse {
     let time_series_guard = time_series_state.read().unwrap();
-    let time_series = &*time_series_guard;
+    let time_series: &TimeSeries = &*time_series_guard;
     HttpResponse::Ok().json(time_series)
+    // match  time_series_result  {
+    //     Ok(time_series)=>     HttpResponse::Ok().json(time_series),
+    //     Err(err)=> {
+    //         eprintln!("Problem time_series: {}", err);
+    //
+    //         err.as_response_error().error_response()
+    //         // HttpResponse::InternalServerError().body(err)
+    //     }
+    // }
 }

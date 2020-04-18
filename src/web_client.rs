@@ -6,7 +6,9 @@ pub mod worldometers {
     use std::time::Duration;
 
     pub async fn get_time_series() -> ActixResult<TimeSeries> {
-        let client: Client = ClientBuilder::new().timeout(Duration::new(15, 0)).finish();
+        let client: Client = ClientBuilder::new()
+            .timeout(Duration::from_secs(35))
+            .finish();
         let response = client
             .get("https://covid2019-api.herokuapp.com/v2/timeseries/confirmed")
             .header("User-Agent", "Actix-web")
